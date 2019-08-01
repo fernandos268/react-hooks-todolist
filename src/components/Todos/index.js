@@ -1,11 +1,12 @@
 import React from 'react'
-import { Grid, Cell, Card, Divider } from 'react-md'
+import { Grid, Card, Divider } from 'react-md'
 import TodoList from './TodoList'
 import AddButton from '../common/AddButton'
 import SanitizeButton from '../common/SanitizeButton'
 import ClearButton from '../common/ClearButton'
 import SubmitButton from '../common/SubmitButton'
 import useForm from './useForm'
+import ConfirmDialog from './ConfirmDialog';
 
 export default () => {
 
@@ -17,9 +18,11 @@ export default () => {
       handleDelete,
       handleClear,
       handleSanitize,
-      handleSubmit
+      handleSubmit,
+      handleShowConfirmation,
+      handleHideConfirmation,
+      confirmationVisible
    } = useForm()
-
 
    return (
       <Grid
@@ -30,7 +33,7 @@ export default () => {
          <Card className='md-cell md-cell-12'>
             <SubmitButton
                todoList={todoList}
-               handleSubmit={handleSubmit}
+               handleClick={handleShowConfirmation}
             />
             <Grid>
                <SanitizeButton
@@ -54,6 +57,11 @@ export default () => {
                handleAdd={handleAdd}
             />
          </Card>
+         <ConfirmDialog
+            visible={confirmationVisible}
+            todoList={sanitizedTodos}
+            handleHide={handleHideConfirmation}
+         />
       </Grid>
    )
 }

@@ -19,7 +19,7 @@ export default ({todoList, handleChange, handleDelete}) =>
                   label=''
                   checked={is_complete}
                   onChange={e => handleChange(e, 'is_complete', todoList, todoItem )}
-                  />
+               />
             </Cell>
             <Cell align='bottom' size={8}>
                <TextField
@@ -32,6 +32,7 @@ export default ({todoList, handleChange, handleDelete}) =>
             <Cell align='bottom' size={2}>
                <Button
                   icon
+                  style={{color:'#ff6e40'}}
                   id="btn_remove"
                   key="btn_remove"
                   onClick={() => handleDelete(todo_id, todoList)}

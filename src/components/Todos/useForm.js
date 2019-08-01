@@ -7,6 +7,7 @@ import uuid from 'uuidv4';
 export default () => {
    const [todoList, setTodoList] = useState(InitialList)
    const [sanitizedTodos, setSanitizedTodos] = useState([])
+   const [confirmationVisible, setConfirmationVisible] = useState(false)
 
    const handleChange = (value, key, list, todoItem) => {
       const newList = list.map(item => {
@@ -46,14 +47,26 @@ export default () => {
       setSanitizedTodos(sanitize(list))
    }
 
+   const handleShowConfirmation = (list) => {
+      setSanitizedTodos(sanitize(list))
+      setConfirmationVisible(true)
+   }
+
+   const handleHideConfirmation = () => {
+      setConfirmationVisible(false)
+   }
+
    return {
       todoList,
       sanitizedTodos,
+      confirmationVisible,
       handleAdd,
       handleChange,
       handleDelete,
       handleClear,
       handleSanitize,
-      handleSubmit
+      handleSubmit,
+      handleShowConfirmation,
+      handleHideConfirmation
    }
 }

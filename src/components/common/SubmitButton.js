@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Grid } from 'react-md';
 
-export default ({ handleSubmit, todoList }) => {
+export default ({ handleClick, todoList }) => {
    return (
       <Grid>
          <Button
             raised
             primary
-            onClick={() => handleSubmit(todoList)}
+            onClick={() => handleClick(todoList)}
             iconChildren='send'
             className='multiFields__addBtn'
          >

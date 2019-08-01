@@ -45,5 +45,11 @@ $md-secondary-color: lime;
 	}
 }
 
+.delete_icon {
+	.md-icon {
+		color: #ff6e40
+	}
+}
+
 
 @include react-md-everything;
