@@ -24,7 +24,6 @@ const todoListMapper = (list) => {
 }
 
 export default ({ visible = false, handleHide, todoList }) => {
-   console.log({todoList});
    const actions = [
       { secondary: true, children: 'Cancel', onClick: handleHide },
       <Button flat primary onClick={handleHide}>
@@ -37,8 +36,9 @@ export default ({ visible = false, handleHide, todoList }) => {
          id="simple-action-dialog"
          visible={visible}
          actions={actions}
-         title="Submit List"
+         title="Todo List"
          centered
+         onHide={() => {}}
       >
          <List>
             {todoListMapper(todoList)}

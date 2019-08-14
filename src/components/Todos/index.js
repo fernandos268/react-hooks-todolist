@@ -1,5 +1,7 @@
 import React from 'react'
 import { Grid, Card, Divider } from 'react-md'
+
+// custom components
 import TodoList from './TodoList'
 import AddButton from '../common/AddButton'
 import SanitizeButton from '../common/SanitizeButton'
@@ -7,21 +9,24 @@ import ClearButton from '../common/ClearButton'
 import SubmitButton from '../common/SubmitButton'
 import useForm from './useForm'
 import ConfirmDialog from './ConfirmDialog';
+import SearchBox from './SearchBox'
 
 export default () => {
 
    const {
       todoList,
       handleAdd,
-      sanitizedTodos,
+      handleClear,
       handleChange,
       handleDelete,
-      handleClear,
+      handleSearch,
+      filteredList,
       handleSanitize,
-      handleSubmit,
+      sanitizedTodos,
+      handlePressEnter,
+      confirmationVisible,
       handleShowConfirmation,
-      handleHideConfirmation,
-      confirmationVisible
+      handleHideConfirmation
    } = useForm()
 
    return (
@@ -47,10 +52,17 @@ export default () => {
                />
             </Grid>
             <Divider />
+            <SearchBox
+               list={todoList}
+               handleSearch={handleSearch}
+            />
+            <Divider />
             <TodoList
                todoList={todoList}
+               filteredList={filteredList}
                handleChange={handleChange}
                handleDelete={handleDelete}
+               handlePressEnter={handlePressEnter}
             />
             <Divider />
             <AddButton

@@ -1,13 +1,13 @@
 import { useState } from 'react';
-
 import { InitialFields, InitialList } from './InitialState'
-
 import uuid from 'uuidv4';
+import Fuse from 'fuse.js'
 
 export default () => {
    const [todoList, setTodoList] = useState(InitialList)
    const [sanitizedTodos, setSanitizedTodos] = useState([])
    const [confirmationVisible, setConfirmationVisible] = useState(false)
+   const [filteredList, setFilteredList] = useState([])
 
    const handleChange = (value, key, list, todoItem) => {
       const newList = list.map(item => {
@@ -24,7 +24,6 @@ export default () => {
    }
 
    const handleDelete = (id, list )  => {
-      console.log({handleDelete:{ id, list }});
       const newList = list.filter(e => e.todo_id !== id)
       setTodoList(newList)
    }
@@ -56,16 +55,36 @@ export default () => {
       setConfirmationVisible(false)
    }
 
+   const handleSearch = (value, list) => {
+      var options = {
+         keys: ['title']
+      };
+      var fuse = new Fuse(list, options)
+      setFilteredList(fuse.search(value))
+   }
+
+   const handlePressEnter = (e) => {
+      if(e.charCode === 13){
+         if(e.target.value){
+            e.focus
+            handleAdd()
+         }
+      }
+   }
+
    return {
       todoList,
-      sanitizedTodos,
-      confirmationVisible,
       handleAdd,
-      handleChange,
-      handleDelete,
       handleClear,
-      handleSanitize,
+      handleChange,
+      filteredList,
       handleSubmit,
+      handleDelete,
+      handleSearch,
+      sanitizedTodos,
+      handleSanitize,
+      handlePressEnter,
+      confirmationVisible,
       handleShowConfirmation,
       handleHideConfirmation
    }

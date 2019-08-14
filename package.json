@@ -8,11 +8,13 @@
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
+    "fuse.js": "^3.4.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-md": "^1.12.2",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.5",
     "uuidv4": "^4.0.0"
   },
