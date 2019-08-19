@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import dateFns from 'date-fns'
 
 class Calendar extends Component {
    state = {
       currentMonth: new Date(),
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      leaveList: [
+         {
+            dateStart: new Date('August 19, 2019'),
+            dateEnd: new Date('August 22, 2019'),
+            type: 'Leave'
+         },
+         {
+            dateStart: new Date('August 7, 2019'),
+            dateEnd: new Date('August 9, 2019'),
+            type: 'Leave'
+         },
+         {
+            dateStart: new Date('August 28, 2019'),
+            dateEnd: new Date('August 28, 2019'),
+            type: 'Leave'
+         }
+      ]
    }
 
    renderHeader() {
@@ -42,7 +60,8 @@ class Calendar extends Component {
       return <div className="days row">{days}</div>;
    }
 
-   renderCells() {
+   renderCells(content) {
+      // console.log({content});
       const { currentMonth, selectedDate } = this.state;
       const monthStart = dateFns.startOfMonth(currentMonth);
       const monthEnd = dateFns.endOfMonth(monthStart);
@@ -69,10 +88,18 @@ class Calendar extends Component {
                   key={day}
                   onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
                >
+               {
+                  content.map(e => {
+                     if(dateFns.isWithinRange(moment(day), moment(e.dateStart),  moment(e.dateEnd))){
+                        return <span>LEAVE</span>
+                     }
+                  })
+               }
                   <span className="number">{formattedDate}</span>
                   <span className="bg">{formattedDate}</span>
                </div>
             );
+
             day = dateFns.addDays(day, 1);
          }
          rows.push(
@@ -105,11 +132,12 @@ class Calendar extends Component {
    }
 
    render() {
+      const { leaveList } = this.state
       return (
          <div className='calendar'>
             {this.renderHeader()}
             {this.renderDays()}
-            {this.renderCells()}
+            {this.renderCells(leaveList)}
          </div>
       )
    }

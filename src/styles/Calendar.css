@@ -68,9 +68,9 @@ header #logo .icon {
 main {
   display: block;
   margin: 0 auto;
-  margin-top: 3em;
+  margin: 3em;
   /* max-width: 50em; */
-  max-width: 90%
+  /* max-width: 95%; */
 }
 
 /* GRID */
@@ -149,8 +149,8 @@ main {
 .calendar .days {
   text-transform: uppercase;
   font-weight: 400;
-  color: var(--text-color-light);
-  font-size: 70%;
+  /* color: var(--text-color-light); */
+  font-size: 90%;
   padding: 0.75em 0;
   border-bottom: 1px solid var(--border-color);
 }
@@ -190,7 +190,7 @@ main {
 
 .calendar .body .cell .number {
   position: absolute;
-  font-size: 82.5%;
+  font-size: 85%;
   line-height: 1;
   top: 0.75em;
   right: 0.75em;
