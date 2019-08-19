@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Card, Divider } from 'react-md'
 
-// custom components
+// TODO COMPONENTS
 import TodoList from './TodoList'
 import AddButton from '../common/AddButton'
 import SanitizeButton from '../common/SanitizeButton'
@@ -30,11 +30,7 @@ export default () => {
    } = useForm()
 
    return (
-      <Grid
-         className='md-paper'
-         style={{alignItems: "center", display: "flex", justifyContent:"center"}}
-      >
-
+      <Grid className='md-paper app-main-grid'>
          <Card className='md-cell md-cell-12'>
             <SubmitButton
                todoList={todoList}
