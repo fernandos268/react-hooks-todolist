@@ -83,8 +83,6 @@ class Calendar extends Component {
          days = [];
       }
 
-      // const rows = 
-
       return <div className="body">{rows}</div>;
    }
 
